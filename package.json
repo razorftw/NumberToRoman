@@ -1,0 +1,18 @@
+{
+  "name": "roman-numerals-converter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup src/index.ts --minify"
+  },
+  "keywords": [],
+  "author": "razorftw <walker@ryandoesdev.com> (https://www.ryandoesdev.com/)",
+  "contributors": ["Khaogamermain01 <khao@khaodoes.dev> (https://www.khaodoes.dev/)"],
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.3"
+  }
+}
