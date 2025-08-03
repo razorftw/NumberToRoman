@@ -4,15 +4,23 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsup src/index.ts --minify"
+    "build": "tsup src/index.ts --minify",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "razorftw <walker@ryandoesdev.com> (https://www.ryandoesdev.com/)",
-  "contributors": ["Khaogamermain01 <khao@khaodoes.dev> (https://www.khaodoes.dev/)"],
+  "contributors": [
+    "Khaogamermain01 <khao@khaodoes.dev> (https://www.khaodoes.dev/)"
+  ],
   "license": "MIT",
   "devDependencies": {
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "@types/jest": "^29.5.8"
   }
 }
