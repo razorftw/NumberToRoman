@@ -1,4 +1,4 @@
-const romanNumeralMap: { [key: string]: number } = {
+const romanNumeralMap: Record<string, number> = {
   I: 1,
   V: 5,
   X: 10,
@@ -8,34 +8,35 @@ const romanNumeralMap: { [key: string]: number } = {
   M: 1000,
 };
 
-export default (romanNumeral: string) => {
-  if (typeof romanNumeral !== "string" || romanNumeral.length === 0) return 0;
-  // Validate characters
-  if (!/^[IVXLCDM]+$/.test(romanNumeral)) return NaN;
+// Matches only canonical (standard-form) numerals from I to MMMCMXCIX.
+const canonicalRoman =
+  /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
 
-  // Validate order (basic check: no invalid subtractive pairs)
-  const invalidPairs = [
-    "IIV",
-    "VX",
-    "IC",
-    "IL",
-    "ID",
-    "IM",
-    "XD",
-    "XM",
-    "LC",
-    "LD",
-    "LM",
-    "DM",
-  ];
-  for (const pair of invalidPairs) {
-    if (romanNumeral.includes(pair)) return NaN;
-  }
+/**
+ * Checks whether a string is a canonical Roman numeral between 1 and 3999.
+ * Matching is case-insensitive.
+ */
+export const isValidRoman = (romanNumeral: string): boolean =>
+  typeof romanNumeral === "string" &&
+  romanNumeral.length > 0 &&
+  canonicalRoman.test(romanNumeral.toUpperCase());
 
+/**
+ * Converts a Roman numeral to a number. Matching is case-insensitive.
+ *
+ * @returns The numeric value, `0` for an empty string, or `NaN` if the input
+ * is not a canonical Roman numeral (e.g. `"IIII"`, `"VX"`, `"ABC"`).
+ */
+export const romanToNumber = (romanNumeral: string): number => {
+  if (typeof romanNumeral !== "string") return NaN;
+  if (romanNumeral.length === 0) return 0;
+  if (!isValidRoman(romanNumeral)) return NaN;
+
+  const numeral = romanNumeral.toUpperCase();
   let total = 0;
   let prev = 0;
-  for (let i = romanNumeral.length - 1; i >= 0; i--) {
-    const value = romanNumeralMap[romanNumeral[i]];
+  for (let i = numeral.length - 1; i >= 0; i--) {
+    const value = romanNumeralMap[numeral[i]];
     if (value < prev) {
       total -= value;
     } else {
@@ -45,3 +46,5 @@ export default (romanNumeral: string) => {
   }
   return total;
 };
+
+export default romanToNumber;
