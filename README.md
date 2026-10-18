@@ -1,11 +1,21 @@
-# Roman Numerals Converter
+# NumberToRoman
 
-A tiny, dependency-free TypeScript library to convert numbers to Roman numerals and back, with strict validation.
+[![npm](https://img.shields.io/npm/v/numbertoroman)](https://www.npmjs.com/package/numbertoroman)
+[![CI](https://github.com/razorftw/NumberToRoman/actions/workflows/ci.yml/badge.svg)](https://github.com/razorftw/NumberToRoman/actions/workflows/ci.yml)
+
+A tiny, dependency-free TypeScript library to convert numbers to Roman numerals and back, with strict validation. Ships ESM, CommonJS and type declarations.
+
+## Installation
+
+```sh
+npm install numbertoroman
+```
 
 ## Usage
 
 ```typescript
-import { numberToRoman, romanToNumber, isValidRoman } from "roman-numerals-converter";
+import { numberToRoman, romanToNumber, isValidRoman } from "numbertoroman";
+// or: const { numberToRoman } = require("numbertoroman");
 
 numberToRoman(2024); // "MMXXIV"
 romanToNumber("MMXXIV"); // 2024

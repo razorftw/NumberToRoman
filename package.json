@@ -1,26 +1,48 @@
 {
-  "name": "roman-numerals-converter",
-  "version": "0.0.1",
+  "name": "numbertoroman",
+  "version": "1.0.0",
   "description": "Convert numbers to Roman numerals and back, with strict validation.",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --minify --clean",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razorftw/NumberToRoman.git"
+  },
+  "homepage": "https://github.com/razorftw/NumberToRoman#readme",
+  "bugs": {
+    "url": "https://github.com/razorftw/NumberToRoman/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "roman",
